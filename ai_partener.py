@@ -61,7 +61,7 @@ st.set_page_config(
     }
 )
 client = OpenAI(
-    api_key=os.environ.get('DEEPSEEK_API_KEY'),
+    api_key=st.secrets('DEEPSEEK_API_KEY'),
     base_url="https://api.deepseek.com",
 )
 st.title("AI智能伴侣")
