@@ -147,3 +147,4 @@ if prompt:
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 if st.session_state.messages:
     save_session()
+shutup;;;;;;;;;;;
