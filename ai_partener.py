@@ -3,6 +3,16 @@ import os
 from openai import OpenAI
 from datetime import datetime
 import json
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+
+if "nick_name" not in st.session_state:
+    st.session_state.nick_name = "小甜甜"
+if "nature" not in st.session_state:
+    st.session_state.nature = "活泼并且开朗的东北姑娘"
+if "current_session" not in st.session_state:
+    st.session_state.current_session=generate_session_name()
 def save_session():
     session_date={
         "nick_name":st.session_state.nick_name,
@@ -61,7 +71,7 @@ st.set_page_config(
     }
 )
 client = OpenAI(
-    api_key=st.secrets('DEEPSEEK_API_KEY'),
+    api_key=st.secrets['DEEPSEEK_API_KEY'],
     base_url="https://api.deepseek.com",
 )
 st.title("AI智能伴侣")
@@ -78,16 +88,7 @@ system_prompt="""你叫%s，现在是用户的真实伴侣，请完全代入伴�
 伴侣性格：
     - %s
 你必须严格遵守上述规则来回复用户."""
-if "messages" not in st.session_state:
-    st.session_state.messages = []
 
-
-if "nick_name" not in st.session_state:
-    st.session_state.nick_name = "小甜甜"
-if "nature" not in st.session_state:
-    st.session_state.nature = "活泼并且开朗的东北姑娘"
-if "current_session" not in st.session_state:
-    st.session_state.current_session=generate_session_name()
 st.text(f"会话时间{st.session_state.current_session}")
 for message in st.session_state.messages:
     st.chat_message(message["role"]).write(message["content"])
