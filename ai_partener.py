@@ -12,7 +12,7 @@ if "nick_name" not in st.session_state:
 if "nature" not in st.session_state:
     st.session_state.nature = "活泼并且开朗的东北姑娘"
 if "current_session" not in st.session_state:
-    st.session_state.current_session=generate_session_name()
+    st.session_state.current_session=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 def save_session():
     session_date={
         "nick_name":st.session_state.nick_name,
